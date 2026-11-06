@@ -176,10 +176,34 @@ printOut(newLine);
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
 
+function calculate (speed, time, distance) {
 
+    if (speed === undefined && time !== undefined && distance !== undefined) {
+        speed = distance / time;
+    }
+    else if (time === undefined && speed !== undefined && distance !== undefined) {
+        time = distance / speed;
+    }
+    else if (distance === undefined && speed !== undefined && time !== undefined) {
+        distance = speed * time;
+    }
+    else {
+       printOut("speed =" + Math.ceil(speed) + " km/h");
+       printOut("distance =" + Math.ceil(distance)+ " km");
+       printOut("time =" + Math.ceil(time) + " h");
+       return NaN;
+    }
+    printOut("speed =" + Math.ceil(speed)  + " km/h");
+       printOut("distance =" + Math.ceil(distance)  + " km");
+       printOut("time =" + Math.ceil(time)  + " h");
+       printOut(newLine);
+    return{speed, time, distance};
 
-
-
+}
+calculate(100, undefined, 200);
+calculate(undefined, 2, 200);
+calculate(100, 2, undefined);
+calculate(100, undefined, undefined);
 
 
 
@@ -206,6 +230,37 @@ printOut(newLine);
 
 printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
+
+function maths (lines){
+    let nummer = 1;
+
+    for (let row = 1; row <= lines; row++) {
+        let left = "";
+        let right = "";
+        let sumR = 0;
+        let sumL = 0;
+
+        for (let i = 0; i < row + 1; i++) {
+            left += nummer + " ";
+            sumL += nummer;
+            nummer++;
+        }
+        for (let i = 0; i < row; i++) {
+            right += nummer + " ";
+            sumR += nummer;
+            nummer++;
+        }
+        
+        if (sumL !== sumR) {
+            printOut("failed at line " + row);
+        }
+
+        printOut(left.padEnd(30, "\u00A0") + "=" + right.padStart(25, "\u00A0") + "\n");
+    }
+    printOut("Maths fun!");
+}
+
+maths(200);
 
 
 
